@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const port = 3000;
 const products = require('./products-controller');
+const { mongodb } = require('./key');
 
 
 const app = express();
@@ -12,7 +13,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 
-mongoose.connect('mongodb+srv://andremiranda:andremiranda@cluster0.qgbjc.mongodb.net/product?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongodb.key, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/products', products)
 
